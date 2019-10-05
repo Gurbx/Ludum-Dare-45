@@ -11,12 +11,14 @@ public class CameraSwitch : MonoBehaviour
 
     private bool isActiveCamera;
 
-    private bool isCombatRoom;
+    private bool isCombatRoom, enemiesSpawned;
     private int combatRoomLevel;
+    private GameObject combatEvent;
 
-    private void Start()
+    private void Awake()
     {
         isCombatRoom = false;
+        enemiesSpawned = false;
         combatRoomLevel = 0;
         isActiveCamera = false;
     }
@@ -30,7 +32,9 @@ public class CameraSwitch : MonoBehaviour
         }
         else if (roomCard.type == RoomCard.RoomType.COMBAT)
         {
+            Debug.Log("IS COMABAT");
             isCombatRoom = true;
+            combatEvent = roomCard.enemies;
             //combatRoomLevel = roomCard.
         }
     }
@@ -39,6 +43,11 @@ public class CameraSwitch : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            if (isCombatRoom && !enemiesSpawned)
+            {
+                Invoke("SpawnEnemies", 2f);
+            }
+
             if (!isActiveCamera)
             {
                 //Make transition and swithc active cam
@@ -91,6 +100,8 @@ public class CameraSwitch : MonoBehaviour
     //COMBAT ROOM
     private void SpawnEnemies()
     {
-
+        enemiesSpawned = true;
+        Debug.Log("ENEMIES SPAWNED");
+        var en = Instantiate(combatEvent, transform.position, transform.rotation);
     }
 }

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatLevel: 0
   type: 1
+  iconImage: {fileID: 21300000, guid: b5a8fffdb8d810d40a760184da58c09a, type: 3}
   loot: {fileID: 4313641367898948110, guid: cf1984e7b23f4684bb6bc5850f30bbba, type: 3}
   enemies: {fileID: 0}

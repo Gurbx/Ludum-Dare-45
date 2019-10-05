@@ -12,6 +12,7 @@ public class CardSelectHandler : MonoBehaviour
 
     [SerializeField] RoomTransitionHandler roomTransition;
     [SerializeField] private Button left, middle, right;
+    [SerializeField] private Image leftImage, middleImage, rightImage;
     [SerializeField] private Animator cardMenuAnimator;
     private RoomCard card1, card2, card3;
 
@@ -61,6 +62,7 @@ public class CardSelectHandler : MonoBehaviour
         {
             card2 = PopRoomCard();
             middle.gameObject.SetActive(true);
+            middleImage.sprite = card2.iconImage;
             firstPickup = false;
         }
         else
@@ -72,6 +74,10 @@ public class CardSelectHandler : MonoBehaviour
             if (card1 != null) left.gameObject.SetActive(true);
             if (card2 != null) middle.gameObject.SetActive(true);
             if (card3 != null) right.gameObject.SetActive(true);
+
+            leftImage.sprite = card1.iconImage;
+            middleImage.sprite = card2.iconImage;
+            rightImage.sprite = card3.iconImage;
         }
 
         cardMenuAnimator.SetBool("visible", true);
