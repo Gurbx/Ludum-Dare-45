@@ -8,6 +8,7 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private Tilemap groundMap, wallMap;
     [SerializeField] private TileBase ground, wall;
     [SerializeField] private GameObject cameraSwitchPrefab;
+    [SerializeField] private GameObject startGrid;
 
     private bool[,] roomGrid;
     private Vector3 lastPosition;
@@ -54,6 +55,7 @@ public class RoomGenerator : MonoBehaviour
         //IF FIRST ROOM
         if (builtRooms == 0)
         {
+            startGrid.SetActive(false);
             position = new Vector3((int)(-ROOMSIZE * 0.5f), (int)-(ROOMSIZE * 0.5f), 0);
             lastPosition = position;
             builtRooms++;
@@ -167,10 +169,9 @@ public class RoomGenerator : MonoBehaviour
         }
 
         //Place Camera trigger
-        var cameraTrigger = Instantiate(cameraSwitchPrefab, new Vector3(position.x + ROOMSIZE * 0.5f, position.y + ROOMSIZE * 0.5f, 0), transform.rotation);
+        var room = Instantiate(cameraSwitchPrefab, new Vector3(position.x + ROOMSIZE * 0.5f, position.y + ROOMSIZE * 0.5f, 0), transform.rotation);
+        room.GetComponent<CameraSwitch>().SetData(card);
     }
-
-
 
 
 

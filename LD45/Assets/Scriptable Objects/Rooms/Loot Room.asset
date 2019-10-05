@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
-  m_Name: StartRoom
+  m_Name: Loot Room
   m_EditorClassIdentifier: 
-  minSize: {x: 10, y: 10}
-  maxSize: {x: 10, y: 10}
-  minLevel: 0
-  maxLevel: 0
+  combatLevel: 0
   type: 1
-  groundTile: {fileID: 11400000, guid: 79d94e73a8b42d9438090b91fd5fe8eb, type: 2}
-  wallTile: {fileID: 11400000, guid: 6c7095e12bdb32040b1836b2261106a7, type: 2}
+  loot: {fileID: 4313641367898948110, guid: cf1984e7b23f4684bb6bc5850f30bbba, type: 3}
+  enemies: {fileID: 0}

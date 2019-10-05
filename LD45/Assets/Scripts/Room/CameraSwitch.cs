@@ -4,11 +4,35 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
+    [SerializeField] private RoomCardPickup roomCardPickupPrefab;
+    [SerializeField] private ItemPickup lootPrefab;
+
+    private RoomCard roomCard;
+
     private bool isActiveCamera;
+
+    private bool isCombatRoom;
+    private int combatRoomLevel;
 
     private void Start()
     {
+        isCombatRoom = false;
+        combatRoomLevel = 0;
         isActiveCamera = false;
+    }
+
+    public void SetData(RoomCard roomCard)
+    {
+        this.roomCard = roomCard;
+        if (roomCard.type == RoomCard.RoomType.LOOT)
+        {
+            SpawnLoot();
+        }
+        else if (roomCard.type == RoomCard.RoomType.COMBAT)
+        {
+            isCombatRoom = true;
+            //combatRoomLevel = roomCard.
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,5 +60,37 @@ public class CameraSwitch : MonoBehaviour
                 }
             }
         }
+    }
+
+
+
+    //ROOM CARD PICKUP FUNCTONS
+    private void SpawnRoomCardPickup()
+    {
+        var pickup = Instantiate(roomCardPickupPrefab, transform.position, transform.rotation);
+    }
+
+
+    // LOOT FUNCTIONS
+    private GameObject spawnedLoot;
+    private void SpawnLoot()
+    {
+        var loot = Instantiate(lootPrefab, transform.position, transform.rotation);
+        spawnedLoot = loot.gameObject;
+        InvokeRepeating("CheckIfLootIsPickedUp", 1f, 1f);
+    }
+    private void CheckIfLootIsPickedUp()
+    {
+        if (spawnedLoot == null)
+        {
+            CancelInvoke();
+            Invoke("SpawnRoomCardPickup", 4f);
+        }
+    }
+
+    //COMBAT ROOM
+    private void SpawnEnemies()
+    {
+
     }
 }

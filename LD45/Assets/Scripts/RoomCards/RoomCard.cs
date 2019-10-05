@@ -6,10 +6,13 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "New Room Card", menuName = "Custom Assets/Room Card")]
 public class RoomCard : ScriptableObject
 {
- //   public Vector2Int minSize, maxSize;
-    public int minLevel, maxLevel;
+    //   public Vector2Int minSize, maxSize;
+    public int combatLevel;
     public RoomType type;
-    public TileBase groundTile, wallTile;
+
+    public GameObject loot;
+    public GameObject enemies;
+   // public TileBase groundTile, wallTile;
 
 
     [System.Serializable]

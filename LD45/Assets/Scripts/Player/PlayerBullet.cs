@@ -6,7 +6,6 @@ using UnityEngine.Experimental.Rendering.LWRP;
 
 public class PlayerBullet : MonoBehaviour
 {
-    private int damage = 1;
 
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] ParticleSystem particles;
@@ -14,11 +13,14 @@ public class PlayerBullet : MonoBehaviour
 
     [SerializeField] GameObject hitEffectPrefab;
 
-    public void Initialize(Color color)
+    private int damage;
+
+    public void Initialize(Color color, int damage)
     {
         spriteRenderer.color = color;
         particles.startColor = color;
         light.color = color;
+        this.damage = damage;
     }
 
 

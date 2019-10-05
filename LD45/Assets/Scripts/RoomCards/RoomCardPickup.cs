@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomCardPickup : MonoBehaviour
 {
-    [SerializeField] private RoomCard roomCard;
+    //[SerializeField] private RoomCard roomCard;
 
     private CardSelectHandler cardSelectHandler;
 
@@ -14,17 +14,12 @@ public class RoomCardPickup : MonoBehaviour
         cardSelectHandler = GameObject.Find("UI/Card Select Menu").GetComponent<CardSelectHandler>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (roomCard != null) cardSelectHandler.Activate(null, roomCard, null);
+            cardSelectHandler.CardCollected();
 
             Destroy(gameObject);
         }

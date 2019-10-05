@@ -9,10 +9,12 @@ public class PlayerShootingHandler : MonoBehaviour
 
     [SerializeField] private PlayerBullet bulletPrefab;
 
+    private int damage = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        damage = 0;
     }
 
     // Update is called once per frame
@@ -26,9 +28,15 @@ public class PlayerShootingHandler : MonoBehaviour
 
     private void Shoot(Vector3 direction)
     {
+        if (damage == 0) return;
         var bullet = Instantiate(bulletPrefab, transform.position + direction*0.5f, transform.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
-        bullet.Initialize(color);
+        bullet.Initialize(color, damage);
 
+    }
+
+    public void IncreaseDamage()
+    {
+        damage++;
     }
 }
