@@ -7,11 +7,11 @@ public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private Tilemap groundMap, wallMap;
     [SerializeField] private TileBase ground, wall;
-
-    [SerializeField] private GameObject camTarget1, camTarget2;
+    [SerializeField] private GameObject cameraSwitchPrefab;
 
     private bool[,] roomGrid;
     private Vector3 lastPosition;
+    private Vector2Int lastCoord;
 
     private int builtRooms = 0;
 
@@ -25,25 +25,16 @@ public class RoomGenerator : MonoBehaviour
     {
         builtRooms = 0;
         lastPosition = Vector3.zero;
+
+        roomGrid = new bool[100, 100];
+        lastCoord = new Vector2Int(50, 50);
     }
 
     public void BuildRoom(RoomCard card)
     {
-        //FIGURE OUT WHERE THE ROOM SHOULD BE BUILT
-        Vector3 position = Vector3.zero;
 
-        if (builtRooms == 0)
-        {
-            position = new Vector3((int)(-ROOMSIZE * 0.5f), (int)-(ROOMSIZE * 0.5f), 0);
-            lastPosition = position;
-            builtRooms++;
-        } else
-        {
-            position = new Vector3(lastPosition.x, lastPosition.y + ROOMSIZE-1, 0);
-            lastPosition = position;
-            camTarget2.transform.position = new Vector3(position.x + ROOMSIZE*0.5f, position.y + ROOMSIZE*0.5f, 0);
-        }
 
+        // BUILD BASIC ROOM
         int[,] map = new int[ROOMSIZE, ROOMSIZE];
         //Generate tiles
         for (int y = 0; y < map.GetLength(1); y++)
@@ -52,10 +43,109 @@ public class RoomGenerator : MonoBehaviour
             {
                 //TEMP BASIC ROOM
                 if (x != 0 && y != 0
-                    && (x != map.GetLength(0)-1) && (y != map.GetLength(0)-1)) map[x, y] = GROUND;
+                    && (x != map.GetLength(0) - 1) && (y != map.GetLength(0) - 1)) map[x, y] = GROUND;
                 else map[x, y] = WALL;
             }
         }
+
+        //FIGURE OUT WHERE THE ROOM SHOULD BE PLACED
+        Vector3 position = Vector3.zero;
+
+        //IF FIRST ROOM
+        if (builtRooms == 0)
+        {
+            position = new Vector3((int)(-ROOMSIZE * 0.5f), (int)-(ROOMSIZE * 0.5f), 0);
+            lastPosition = position;
+            builtRooms++;
+
+            roomGrid[lastCoord.x, lastCoord.y] = true;
+
+        } else
+        {
+            int direction = Random.Range(0, 3);
+
+            // Try to find spot to place
+            while (true)
+            {
+                if (direction == 0)
+                {
+                    //Continue if occupied
+                    if (roomGrid[lastCoord.x,lastCoord.y+1] == true)
+                    {
+                        direction += 1;
+                        continue;
+                    }
+
+                    //BUILD UP
+                    position = new Vector3(lastPosition.x, lastPosition.y + ROOMSIZE - 1, 0);
+                    // MAKE DOOR 
+                    map[7, 0] = GROUND;
+                    map[8, 0] = GROUND;
+
+                    lastCoord.y += 1;
+                    break;
+                }
+                else if (direction == 1)
+                {
+                    //Continue if occupied
+                    if (roomGrid[lastCoord.x, lastCoord.y-1] == true)
+                    {
+                        direction += 1;
+                        continue;
+                    }
+
+                    //BUILD DOWN
+                    position = new Vector3(lastPosition.x, lastPosition.y - ROOMSIZE + 1, 0);
+                    // MAKE DOOR 
+                    map[7, ROOMSIZE - 1] = GROUND;
+                    map[8, ROOMSIZE - 1] = GROUND;
+
+                    lastCoord.y -= 1;
+                    break;
+                }
+                else if (direction == 2)
+                {
+                    //Continue if occupied
+                    if (roomGrid[lastCoord.x-1, lastCoord.y] == true)
+                    {
+                        direction += 1;
+                        continue;
+                    }
+
+                    //BUILD LEFT
+                    position = new Vector3(lastPosition.x - ROOMSIZE + 1, lastPosition.y, 0);
+                    // MAKE DOOR 
+                    map[ROOMSIZE - 1, 7] = GROUND;
+                    map[ROOMSIZE - 1, 8] = GROUND;
+
+                    lastCoord.x -= 1;
+                    break;
+                }
+                else if (direction == 3)
+                {
+                    //Continue if occupied
+                    if (roomGrid[lastCoord.x+1, lastCoord.y] == true)
+                    {
+                        direction = 0;
+                        continue;
+                    }
+
+                    //BUILD RIGHT
+                    position = new Vector3(lastPosition.x + ROOMSIZE - 1, lastPosition.y, 0);
+                    // MAKE DOOR 
+                    map[0, 7] = GROUND;
+                    map[0, 8] = GROUND;
+
+                    lastCoord.x += 1;
+                    break;
+                }
+            }
+
+            roomGrid[lastCoord.x, lastCoord.y] = true;
+            builtRooms++;
+            lastPosition = position;
+        }
+
 
 
         //PLACE TILES
@@ -63,10 +153,21 @@ public class RoomGenerator : MonoBehaviour
         {
             for (int x = 0; x < map.GetLength(0); x++)
             {
-                if (map[x, y] == GROUND) groundMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), ground);
-                else if (map[x, y] == WALL) wallMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), wall);
+                if (map[x, y] == GROUND)
+                {
+                    wallMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), null);
+                    groundMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), ground);
+                }
+                else if (map[x, y] == WALL)
+                {
+                    wallMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), wall);
+                    groundMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), null);
+                }
             }
         }
+
+        //Place Camera trigger
+        var cameraTrigger = Instantiate(cameraSwitchPrefab, new Vector3(position.x + ROOMSIZE * 0.5f, position.y + ROOMSIZE * 0.5f, 0), transform.rotation);
     }
 
 

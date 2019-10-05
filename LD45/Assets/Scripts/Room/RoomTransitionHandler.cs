@@ -12,11 +12,7 @@ public class RoomTransitionHandler : MonoBehaviour
 
     private CinemachineVirtualCamera activeCam;
 
-
-    public void TransitionToRoom(RoomCard roomCard)
-    {
-        roomGenerator.BuildRoom(roomCard);
-    }
+    private RoomCard lastRoomCard;
 
     private void Start()
     {
@@ -24,27 +20,16 @@ public class RoomTransitionHandler : MonoBehaviour
         activeCam = cam1;
     }
 
-    private void Update()
+    public void TransitionToRoom(RoomCard roomCard)
     {
-        if (Input.GetKeyDown("r"))
-        {
-            flasher.SetTrigger("Flash");
-        }
+        lastRoomCard = roomCard;
+
+        flasher.SetTrigger("Flash");
+        Invoke("BuildRoom", 0.1f);
     }
 
-    public void TransitionRooms()
+    private void BuildRoom()
     {
-        if (activeCam == cam1)
-        {
-            cam1.Priority = 0;
-            cam2.Priority = 15;
-            activeCam = cam2;
-        } else
-        {
-            cam2.Priority = 15;
-            cam1.Priority = 0;
-            activeCam = cam1;
-        }
-
+        roomGenerator.BuildRoom(lastRoomCard);
     }
 }

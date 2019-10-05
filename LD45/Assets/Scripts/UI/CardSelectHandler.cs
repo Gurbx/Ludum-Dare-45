@@ -27,7 +27,6 @@ public class CardSelectHandler : MonoBehaviour
         if (card3 != null) right.gameObject.SetActive(true);
     }
 
-
     public void LeftSelected()
     {
         BuildRoomCard(card1);
