@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
 
     private Rigidbody2D rigidbody;
+    private Vector2 moveVelocity = Vector2.zero;
 
     void Start()
     {
@@ -15,6 +16,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        
+        moveVelocity.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (moveVelocity.magnitude > 1) moveVelocity.Normalize();
+
+        moveVelocity *= speed;
+
+    }
+
+    private void FixedUpdate()
+    {
+        rigidbody.velocity = moveVelocity;
     }
 }

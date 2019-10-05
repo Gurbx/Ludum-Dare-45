@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Player Bullet
+  - Enemy
+  - Enemy Bullet
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 2492668275
+    locked: 0
+  - name: MID
+    uniqueID: 2961977969
+    locked: 0
+  - name: FG
+    uniqueID: 377258935
     locked: 0
