@@ -10,6 +10,8 @@ public class GameHandler : MonoBehaviour
 
     private int roomCurrency;
     [SerializeField] private Text currencyText;
+    [SerializeField] private Text dmgText;
+    [SerializeField] private Text energyText;
 
     public CinemachineVirtualCamera cam1, cam2;
     [HideInInspector] public CinemachineVirtualCamera activeCam;
@@ -74,4 +76,14 @@ public class GameHandler : MonoBehaviour
     }
 
     public int GetRoomCurrency() { return roomCurrency; }
+
+    public void UpdateDamageText(int damage)
+    {
+        dmgText.text = damage.ToString();
+    }
+
+    public void UpdateEnergyText(int energy, int maxEnerey)
+    {
+        energyText.text = energy.ToString() + " / " + maxEnerey.ToString();
+    }
 }

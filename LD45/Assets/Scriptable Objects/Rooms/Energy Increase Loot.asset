@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
   m_Name: Energy Increase Loot
   m_EditorClassIdentifier: 
-  roomCost: 15
+  roomCost: 4
   type: 1
   color: {r: 0, g: 1, b: 0.5760119, a: 1}
   name: Energy

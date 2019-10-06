@@ -7,6 +7,7 @@ public class CameraSwitch : MonoBehaviour
 {
     [SerializeField] private GameObject roomCardPickupPrefab;
     [SerializeField] private Light2D light;
+    [SerializeField] private AudioSource spawnSound;
    // [SerializeField] private ItemPickup lootPrefab;
 
     private RoomCard roomCard;
@@ -51,6 +52,7 @@ public class CameraSwitch : MonoBehaviour
             if (isCombatRoom && !enemiesSpawned)
             {
                 Invoke("SpawnEnemies", 2f);
+                Invoke("SpawnSound", 5f);
             }
 
             if (!isActiveCamera)
@@ -113,6 +115,11 @@ public class CameraSwitch : MonoBehaviour
         var en = Instantiate(combatEvent, transform.position, transform.rotation);
         spawnedCombatEvent = en.gameObject;
         InvokeRepeating("CheckCombaEventStatus", 1f, 1f);
+    }
+
+    private void SpawnSound()
+    {
+        spawnSound.Play();
     }
 
     private void CheckCombaEventStatus()

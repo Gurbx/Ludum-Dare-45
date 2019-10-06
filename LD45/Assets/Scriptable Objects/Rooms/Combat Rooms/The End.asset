@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
-  m_Name: Damage Increase Loot
+  m_Name: The End
   m_EditorClassIdentifier: 
-  roomCost: 8
-  type: 1
-  color: {r: 0.96529734, g: 1, b: 0.504717, a: 1}
-  name: Power
-  loot: {fileID: 3298312741444027541, guid: a6da4d8f43dc76246960b3edae6b1785, type: 3}
+  roomCost: 20
+  type: 3
+  color: {r: 1, g: 0, b: 0.6154237, a: 1}
+  name: Escape
+  loot: {fileID: 0}
   enemies: {fileID: 0}

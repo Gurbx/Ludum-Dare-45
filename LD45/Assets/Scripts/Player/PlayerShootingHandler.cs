@@ -31,6 +31,7 @@ public class PlayerShootingHandler : MonoBehaviour
     {
         powerLevel = 0;
         PowerLevelChanged();
+        GameHandler.GetGameHandler().UpdateDamageText(damage);
     }
 
     // Update is called once per frame
@@ -90,6 +91,7 @@ public class PlayerShootingHandler : MonoBehaviour
         light.gameObject.transform.localScale = new Vector3(powerPercentage * 1.5f, powerPercentage * 1.5f, 1);
         light.intensity = 0.8f * powerPercentage;
 
+        GameHandler.GetGameHandler().UpdateEnergyText(powerLevel, MAX_POWER_LEVEL);
         energyBar.value = powerPercentage;
     }
 
@@ -103,10 +105,12 @@ public class PlayerShootingHandler : MonoBehaviour
     public void IncreaseDamage(int amount)
     {
         damage += amount;
+        GameHandler.GetGameHandler().UpdateDamageText(damage);
     }
 
     public void IncreaseEnergyCap(int amount)
     {
         MAX_POWER_LEVEL += amount;
+        PowerLevelChanged();
     }
 }

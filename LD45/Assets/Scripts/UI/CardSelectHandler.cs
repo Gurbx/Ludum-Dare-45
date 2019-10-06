@@ -7,12 +7,16 @@ public class CardSelectHandler : MonoBehaviour
 {
     private int roomCurrency;
 
+    private int nrRoomsPicked;
+
     [SerializeField] private List<RoomCard> earlyZeroCards;
     [SerializeField] private List<RoomCard> lateZeroCards;
 
     [SerializeField] private List<RoomCard> firstCards;
     [SerializeField] private List<RoomCard> earlyCards;
     [SerializeField] private List<RoomCard> lateCards;
+
+    [SerializeField] private RoomCard endCard;
 
     [SerializeField] private Text questionText;
 
@@ -24,12 +28,15 @@ public class CardSelectHandler : MonoBehaviour
     [SerializeField] private Animator cardMenuAnimator;
     private RoomCard card1, card2, card3;
 
+    [SerializeField] private AudioSource selectSound;
+
 
     private bool firstPickup;
 
     private void Start()
     {
         firstPickup = true;
+        nrRoomsPicked = 0;
     }
 
     private RoomCard PopRoomCard()
@@ -54,18 +61,24 @@ public class CardSelectHandler : MonoBehaviour
             lateCards.Remove(card);
         }
 
+        if (nrRoomsPicked > 4)
+        {
+            if (Random.Range(0, 100) < 25) return endCard;
+        }
+
         return card;
     }
 
     private RoomCard GetZeroCard()
     {
-        return earlyZeroCards[Random.Range(0, earlyZeroCards.Count - 1)];
+        return earlyZeroCards[Random.Range(0, earlyZeroCards.Count)];
 
     }
 
 
     private void BuildRoomCard(RoomCard card)
     {
+        nrRoomsPicked++;
         roomTransition.TransitionToRoom(card);
     }
 
@@ -129,9 +142,17 @@ public class CardSelectHandler : MonoBehaviour
     {
         if (card1.roomCost <= GameHandler.GetGameHandler().GetRoomCurrency())
         {
+            if (card1.type == RoomCard.RoomType.BOSS)
+            {
+                HideAll();
+                Invoke("Victory", 0.2f);
+                return;
+            }
+
             GameHandler.GetGameHandler().RemoveCurrency(card1.roomCost);
             BuildRoomCard(card1);
             HideAll();
+            selectSound.Play();
         }
     }
 
@@ -139,9 +160,17 @@ public class CardSelectHandler : MonoBehaviour
     {
         if (card2.roomCost <= GameHandler.GetGameHandler().GetRoomCurrency())
         {
+            if (card2.type == RoomCard.RoomType.BOSS)
+            {
+                HideAll();
+                Invoke("Victory", 0.2f);
+                return;
+            }
+
             GameHandler.GetGameHandler().RemoveCurrency(card2.roomCost);
             BuildRoomCard(card2);
             HideAll();
+            selectSound.Play();
         }
     }
 
@@ -149,9 +178,17 @@ public class CardSelectHandler : MonoBehaviour
     {
         if (card3.roomCost <= GameHandler.GetGameHandler().GetRoomCurrency())
         {
+            if (card3.type == RoomCard.RoomType.BOSS)
+            {
+                HideAll();
+                Invoke("Victory", 0.2f);
+                return;
+            }
+
             GameHandler.GetGameHandler().RemoveCurrency(card3.roomCost);
             BuildRoomCard(card3);
             HideAll();
+            selectSound.Play();
         }
     }
 
@@ -163,5 +200,10 @@ public class CardSelectHandler : MonoBehaviour
         middle.gameObject.SetActive(false);
         right.gameObject.SetActive(false);
         questionText.gameObject.SetActive(false);
+    }
+
+    private void Victory()
+    {
+
     }
 }

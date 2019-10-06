@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
-  m_Name: Damage Increase Loot
+  m_Name: Combat Moving Volley
   m_EditorClassIdentifier: 
-  roomCost: 8
-  type: 1
-  color: {r: 0.96529734, g: 1, b: 0.504717, a: 1}
-  name: Power
-  loot: {fileID: 3298312741444027541, guid: a6da4d8f43dc76246960b3edae6b1785, type: 3}
-  enemies: {fileID: 0}
+  roomCost: 0
+  type: 0
+  color: {r: 1, g: 0.027940622, b: 0, a: 1}
+  name: Danger
+  loot: {fileID: 0}
+  enemies: {fileID: 1466444157647777345, guid: a8c0697ad1fefce4ab3ed9914757f96d, type: 3}
