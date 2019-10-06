@@ -26,6 +26,7 @@ public class MainMenuHandler : MonoBehaviour
     {
         cBrain.m_DefaultBlend.m_Time = 1f;
         UI.SetActive(true);
+        player.GetComponent<PlayerMovement>().canMove = true;
 
 
     }

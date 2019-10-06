@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CardSelectHandler : MonoBehaviour
 {
@@ -204,6 +205,6 @@ public class CardSelectHandler : MonoBehaviour
 
     private void Victory()
     {
-
+        SceneManager.LoadScene(1);
     }
 }

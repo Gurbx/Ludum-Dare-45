@@ -7,16 +7,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private PlayerShootingHandler shootingHandler;
 
+    public bool canMove;
+
     private Rigidbody2D rigidbody;
     private Vector2 moveVelocity = Vector2.zero;
 
     void Start()
     {
+        canMove = false;
         rigidbody = GetComponent<Rigidbody2D>();        
     }
 
     void Update()
     {
+        if (!canMove) return;
         moveVelocity.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         if (moveVelocity.magnitude > 1) moveVelocity.Normalize();
 
