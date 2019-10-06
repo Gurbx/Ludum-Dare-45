@@ -7,6 +7,7 @@ public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private Tilemap groundMap, wallMap;
     [SerializeField] private TileBase ground, wall;
+    [SerializeField] private TileBase altGround, altGround2;
     [SerializeField] private GameObject cameraSwitchPrefab;
     [SerializeField] private GameObject startGrid;
 
@@ -158,7 +159,15 @@ public class RoomGenerator : MonoBehaviour
                 if (map[x, y] == GROUND)
                 {
                     wallMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), null);
-                    groundMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), ground);
+
+                    TileBase tile = ground;
+                    if (Random.Range(0, 100) < 20)
+                    {
+                        if (Random.Range(0, 100) < 80) tile = altGround;
+                        else tile = altGround2;
+                    }
+
+                    groundMap.SetTile(new Vector3Int((int)position.x + x, (int)position.y + y, 0), tile);
                 }
                 else if (map[x, y] == WALL)
                 {

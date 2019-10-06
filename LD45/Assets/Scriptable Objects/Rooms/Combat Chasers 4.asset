@@ -15,6 +15,6 @@ MonoBehaviour:
   roomCost: 2
   type: 0
   color: {r: 1, g: 0.601208, b: 0, a: 1}
-  name: COMBAT
+  name: Danger
   loot: {fileID: 0}
   enemies: {fileID: 8976241265786383837, guid: cb4e754781d30b441804e70dd6a2488b, type: 3}

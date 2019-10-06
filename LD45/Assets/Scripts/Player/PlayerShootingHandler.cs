@@ -24,7 +24,7 @@ public class PlayerShootingHandler : MonoBehaviour
 
     private float powerPercentage;
     private int powerLevel;
-    private const int MAX_POWER_LEVEL = 35;
+    private int MAX_POWER_LEVEL = 35;
 
     // Start is called before the first frame update
     void Start()
@@ -98,5 +98,15 @@ public class PlayerShootingHandler : MonoBehaviour
     private void GameOverScreen()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void IncreaseDamage(int amount)
+    {
+        damage += amount;
+    }
+
+    public void IncreaseEnergyCap(int amount)
+    {
+        MAX_POWER_LEVEL += amount;
     }
 }

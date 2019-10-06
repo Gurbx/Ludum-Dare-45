@@ -15,6 +15,6 @@ MonoBehaviour:
   roomCost: 5
   type: 1
   color: {r: 0, g: 1, b: 0.99020815, a: 1}
-  name: LOOT
+  name: Help
   loot: {fileID: 8198611599592603395, guid: d243c3e493c0dff4a9cf8aaf4879a5d6, type: 3}
   enemies: {fileID: 0}

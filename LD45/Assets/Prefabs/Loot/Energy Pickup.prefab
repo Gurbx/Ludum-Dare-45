@@ -64,8 +64,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  pickupEffect: {fileID: 6960095037078935772, guid: b3dfae50c1f916743841bf4991d24159,
+  pickupEffect: {fileID: 5636375144428178627, guid: 7a09f380711f07c4a9eda52aa45e619b,
     type: 3}
+  value: 0
 --- !u!1 &4313641368276571092
 GameObject:
   m_ObjectHideFlags: 0

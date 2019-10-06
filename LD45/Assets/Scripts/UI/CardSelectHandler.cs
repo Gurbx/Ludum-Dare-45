@@ -14,6 +14,7 @@ public class CardSelectHandler : MonoBehaviour
     [SerializeField] private List<RoomCard> earlyCards;
     [SerializeField] private List<RoomCard> lateCards;
 
+    [SerializeField] private Text questionText;
 
     [SerializeField] RoomTransitionHandler roomTransition;
     [SerializeField] private Button left, middle, right;
@@ -118,7 +119,9 @@ public class CardSelectHandler : MonoBehaviour
 
         }
 
+        questionText.gameObject.SetActive(true);
         cardMenuAnimator.SetBool("visible", true);
+
     }
 
 
@@ -159,5 +162,6 @@ public class CardSelectHandler : MonoBehaviour
         left.gameObject.SetActive(false);
         middle.gameObject.SetActive(false);
         right.gameObject.SetActive(false);
+        questionText.gameObject.SetActive(false);
     }
 }

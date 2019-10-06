@@ -15,7 +15,9 @@ public class ItemPickup : MonoBehaviour
         DAMAGE,
         HEALTH,
         CURRENCY,
-        CARDS
+        CARDS,
+        PERMANENT_DAMAGE_INCREASE,
+        PERMANENT_POWER_CAP_INCEASE
     };
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,6 +40,15 @@ public class ItemPickup : MonoBehaviour
             case PickupType.CURRENCY:
                 GameHandler.GetGameHandler().AddCurrency(value);
                 break;
+
+            case PickupType.PERMANENT_DAMAGE_INCREASE:
+                collision.gameObject.GetComponent<PlayerShootingHandler>().IncreaseDamage(1);
+                break;
+
+            case PickupType.PERMANENT_POWER_CAP_INCEASE:
+                collision.gameObject.GetComponent<PlayerShootingHandler>().IncreaseEnergyCap(10);
+                break;
+
 
         }
 

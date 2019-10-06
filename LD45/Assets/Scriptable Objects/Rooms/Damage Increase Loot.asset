@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
-  m_Name: Combat Shooters 2
+  m_Name: Damage Increase Loot
   m_EditorClassIdentifier: 
-  roomCost: 1
-  type: 0
-  color: {r: 1, g: 0.601208, b: 0, a: 1}
-  name: Danger
-  loot: {fileID: 0}
-  enemies: {fileID: 7338480244505465744, guid: d5fd7b7808e77e247853d274789a758e, type: 3}
+  roomCost: 10
+  type: 1
+  color: {r: 0.96529734, g: 1, b: 0.504717, a: 1}
+  name: Power
+  loot: {fileID: 3298312741444027541, guid: a6da4d8f43dc76246960b3edae6b1785, type: 3}
+  enemies: {fileID: 0}
