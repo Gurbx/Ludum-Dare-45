@@ -4954,6 +4954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26f6335df9079c4eaa81f965ae39b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   light: {fileID: 6477055546550256048}
   particles: {fileID: 6477055546394715473}
   spriteRenderer: {fileID: 6477055546718743251}
@@ -4971,7 +4972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyDropValue: 1
   health: 5
-  itemDropPrefab: {fileID: 4313641367898948110, guid: cf1984e7b23f4684bb6bc5850f30bbba,
+  itemDropPrefab: {fileID: 5826791470236415525, guid: c62f323cf8a99b6419da87428b500fc0,
     type: 3}
   hitEffectPrefab: {fileID: 9114252207585919183, guid: f0113adff97641e41b7d8dfced865a37,
     type: 3}

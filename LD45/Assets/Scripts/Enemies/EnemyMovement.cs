@@ -5,7 +5,10 @@ using UnityEngine.Experimental.Rendering.LWRP;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] private int damage;
     private EnemyHandler enemyHandler;
+
+    private float hitTimer;
 
     private GameObject player;
     private Rigidbody2D rigidbody;
@@ -31,14 +34,27 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hitTimer -= Time.deltaTime;
+
         moveVelocity = player.transform.position - transform.position;
         moveVelocity.Normalize();
 
         moveVelocity *= enemyHandler.enemyType.movementSpeed;
+
+        if (hitTimer >= 0) moveVelocity *= -1; //Move away from player if just hit him
     }
 
     private void FixedUpdate()
     {
         rigidbody.velocity = moveVelocity;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerShootingHandler>().DecreasePowerLevel(damage, true);
+            hitTimer = 0.25f;
+        }
     }
 }

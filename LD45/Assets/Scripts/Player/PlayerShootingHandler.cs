@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering.LWRP;
+using UnityEngine.SceneManagement;
 
 public class PlayerShootingHandler : MonoBehaviour
 {
@@ -11,10 +13,16 @@ public class PlayerShootingHandler : MonoBehaviour
     [SerializeField] private PlayerBullet bulletPrefab;
 
     [SerializeField] private GameObject playerSprite;
-    [SerializeField] private Light2D light;
-    
 
+    [SerializeField] private GameObject deathEffect, hitEffectPrefab;
+
+    [SerializeField] private Light2D light;
+
+    [SerializeField] private Slider energyBar;
+
+    private float powerPercentage;
     private int powerLevel;
+    private const int MAX_POWER_LEVEL = 70;
 
     // Start is called before the first frame update
     void Start()
@@ -39,27 +47,54 @@ public class PlayerShootingHandler : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
         bullet.Initialize(color, powerLevel);
 
-        powerLevel--;
-        PowerLevelChanged();
+        //powerLevel--;
+        DecreasePowerLevel(1, false);
+        //PowerLevelChanged();
 
     }
 
     public void IncreasePowerLevel(int amount)
     {
         powerLevel += amount;
+        if (powerLevel > MAX_POWER_LEVEL) powerLevel = MAX_POWER_LEVEL;
         PowerLevelChanged();
     }
 
-    public void DecreasePowerLevel(int amount)
+    public void DecreasePowerLevel(int amount, bool hitEffect)
     {
         powerLevel--;
+        if (powerLevel <= 0)
+        {
+            powerLevel = 0;
+            playerSprite.SetActive(false);
+            Instantiate(deathEffect, transform.position, transform.rotation);
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            gameObject.layer = 2;
+            Invoke("GameOverScreen", 2f);
+        }
+        else if (hitEffect)
+        {
+            var effect = Instantiate(hitEffectPrefab, transform.position, transform.rotation);
+            Destroy(effect, 4f);
+        }
         PowerLevelChanged();
     }
 
     private void PowerLevelChanged()
     {
-        playerSprite.transform.localScale = new Vector3(0.005f*powerLevel, 0.005f*powerLevel, 1);
-        light.gameObject.transform.localScale = new Vector3(0.05f * powerLevel, 0.05f * powerLevel, 1);
-        light.intensity = powerLevel/75f; 
+        powerPercentage = (float)powerLevel / MAX_POWER_LEVEL;
+
+        playerSprite.transform.localScale = new Vector3(powerPercentage * 0.7f, powerPercentage * 0.7f, 1);
+        light.gameObject.transform.localScale = new Vector3(powerPercentage * 5f, powerPercentage * 5f, 1);
+        light.intensity = powerPercentage + 0.65f;
+
+        energyBar.value = powerPercentage;
+    }
+
+    public float GetPowerPercentage() { return powerPercentage; }
+
+    private void GameOverScreen()
+    {
+        SceneManager.LoadScene(0);
     }
 }

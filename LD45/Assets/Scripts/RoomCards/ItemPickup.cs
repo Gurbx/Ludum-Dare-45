@@ -36,7 +36,7 @@ public class ItemPickup : MonoBehaviour
                 break;
 
             case PickupType.CURRENCY:
-                GameHandler.GetGameHandler().roomCurrency += value;
+                GameHandler.GetGameHandler().AddCurrency(value);
                 break;
 
         }

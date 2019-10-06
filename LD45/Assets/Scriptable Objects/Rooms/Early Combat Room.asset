@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
   m_Name: Early Combat Room
   m_EditorClassIdentifier: 
-  combatLevel: 1
+  roomCost: 0
   type: 0
   color: {r: 1, g: 0.601208, b: 0, a: 1}
-  name: Combat
+  name: COMBAT
   loot: {fileID: 0}
   enemies: {fileID: 8976241265786383837, guid: cb4e754781d30b441804e70dd6a2488b, type: 3}

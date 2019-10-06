@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
-  m_Name: Loot Room
+  m_Name: First Loot Room
   m_EditorClassIdentifier: 
-  roomCost: 5
+  roomCost: 0
   type: 1
   color: {r: 0, g: 1, b: 0.99020815, a: 1}
   name: LOOT

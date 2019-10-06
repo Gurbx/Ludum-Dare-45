@@ -16,6 +16,7 @@ public class CardSelectHandler : MonoBehaviour
     [SerializeField] private Button left, middle, right;
     [SerializeField] private Image leftImage, middleImage, rightImage;
     [SerializeField] private Text leftName, middleName, rightName;
+    [SerializeField] private Text leftCost, middleCost, rightCost;
     [SerializeField] private Animator cardMenuAnimator;
     private RoomCard card1, card2, card3;
 
@@ -67,6 +68,7 @@ public class CardSelectHandler : MonoBehaviour
             middle.gameObject.SetActive(true);
             middleImage.color = card2.color;
             middleName.text = card2.name;
+            middleCost.text = card2.roomCost.ToString();
             firstPickup = false;
         }
         else
@@ -86,6 +88,25 @@ public class CardSelectHandler : MonoBehaviour
             leftName.text = card1.name;
             middleName.text = card2.name;
             rightName.text = card3.name;
+
+            leftCost.text = card1.roomCost.ToString();
+            middleCost.text = card2.roomCost.ToString();
+            rightCost.text = card3.roomCost.ToString();
+
+            //Make cost text red if cant afford
+            if (card1.roomCost > GameHandler.GetGameHandler().GetRoomCurrency())
+                leftCost.color = Color.red;
+            else leftCost.color = Color.white;
+
+            if (card2.roomCost > GameHandler.GetGameHandler().GetRoomCurrency())
+                middleCost.color = Color.red;
+            else middleCost.color = Color.white;
+
+            if (card3.roomCost > GameHandler.GetGameHandler().GetRoomCurrency())
+                rightCost.color = Color.red;
+            else rightCost.color = Color.white;
+
+
         }
 
         cardMenuAnimator.SetBool("visible", true);
@@ -94,20 +115,32 @@ public class CardSelectHandler : MonoBehaviour
 
     public void LeftSelected()
     {
-        BuildRoomCard(card1);
-        HideAll();
+        if (card1.roomCost <= GameHandler.GetGameHandler().GetRoomCurrency())
+        {
+            GameHandler.GetGameHandler().RemoveCurrency(card1.roomCost);
+            BuildRoomCard(card1);
+            HideAll();
+        }
     }
 
     public void MiddleSelected()
     {
-        BuildRoomCard(card2);
-        HideAll();
+        if (card2.roomCost <= GameHandler.GetGameHandler().GetRoomCurrency())
+        {
+            GameHandler.GetGameHandler().RemoveCurrency(card2.roomCost);
+            BuildRoomCard(card2);
+            HideAll();
+        }
     }
 
     public void RightSelected()
     {
-        BuildRoomCard(card3);
-        HideAll();
+        if (card3.roomCost <= GameHandler.GetGameHandler().GetRoomCurrency())
+        {
+            GameHandler.GetGameHandler().RemoveCurrency(card3.roomCost);
+            BuildRoomCard(card3);
+            HideAll();
+        }
     }
 
 

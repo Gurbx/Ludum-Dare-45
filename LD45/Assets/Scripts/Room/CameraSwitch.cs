@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class CameraSwitch : MonoBehaviour
 {
     [SerializeField] private GameObject roomCardPickupPrefab;
+    [SerializeField] private Light2D light;
    // [SerializeField] private ItemPickup lootPrefab;
 
     private RoomCard roomCard;
@@ -38,6 +40,8 @@ public class CameraSwitch : MonoBehaviour
             combatEvent = roomCard.enemies;
             //combatRoomLevel = roomCard.
         }
+
+        light.color = roomCard.color;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
