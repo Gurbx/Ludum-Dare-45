@@ -34,11 +34,14 @@ public class EnemyHealth : MonoBehaviour
             var item = Instantiate(itemDropPrefab, transform.position, transform.rotation);
             item.GetComponent<ItemPickup>().value = energyDropValue;
 
+            GameHandler.AddSceenShake(8, 8, 0.2f);
 
             Destroy(gameObject);
         }
         else
         {
+            GameHandler.AddSceenShake(4, 4, 0.2f);
+
             var effect = Instantiate(hitEffectPrefab, transform.position, transform.rotation);
             effect.GetComponent<ParticleSystem>().startColor = enemyHandler.enemyType.color;
             Destroy(effect, 5f);

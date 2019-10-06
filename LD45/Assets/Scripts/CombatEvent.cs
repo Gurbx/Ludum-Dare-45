@@ -25,6 +25,8 @@ public class CombatEvent : MonoBehaviour
     {
         eventHasStarted = true;
 
+        GameHandler.AddSceenShake(7, 7, 0.4f);
+
         foreach (Transform child in transform)
         {
             var spawnEffect = Instantiate(spawnExplosionPrefab, child.position, child.rotation);

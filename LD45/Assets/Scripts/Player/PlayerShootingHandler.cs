@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerShootingHandler : MonoBehaviour
 {
+    private int damage = 5;
+
     [SerializeField] private Color color;
     [SerializeField] private float bulletSpeed;
 
@@ -22,7 +24,7 @@ public class PlayerShootingHandler : MonoBehaviour
 
     private float powerPercentage;
     private int powerLevel;
-    private const int MAX_POWER_LEVEL = 50;
+    private const int MAX_POWER_LEVEL = 35;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +46,8 @@ public class PlayerShootingHandler : MonoBehaviour
     {
         if (powerLevel <= 0) return;
         var bullet = Instantiate(bulletPrefab, transform.position + direction*0.5f, transform.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction * (bulletSpeed * (1-powerPercentage)+25));
-        bullet.Initialize(color, (int)(10f*powerPercentage)+1);
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * (bulletSpeed * (1-powerPercentage)+100));
+        bullet.Initialize(color, damage);
 
         //powerLevel--;
         DecreasePowerLevel(1, false);
@@ -85,8 +87,8 @@ public class PlayerShootingHandler : MonoBehaviour
         powerPercentage = (float)powerLevel / MAX_POWER_LEVEL;
 
         playerSprite.transform.localScale = new Vector3(powerPercentage * 0.7f, powerPercentage * 0.7f, 1);
-        light.gameObject.transform.localScale = new Vector3(powerPercentage * 5f, powerPercentage * 5f, 1);
-        light.intensity = powerPercentage + 0.65f;
+        light.gameObject.transform.localScale = new Vector3(powerPercentage * 1.5f, powerPercentage * 1.5f, 1);
+        light.intensity = 0.8f * powerPercentage;
 
         energyBar.value = powerPercentage;
     }

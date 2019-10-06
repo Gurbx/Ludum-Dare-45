@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         moveVelocity.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         if (moveVelocity.magnitude > 1) moveVelocity.Normalize();
 
-        moveVelocity *= speed * (1-shootingHandler.GetPowerPercentage()) + 1;
+        moveVelocity *= speed * (1-shootingHandler.GetPowerPercentage()) + 3;
 
     }
 

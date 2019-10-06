@@ -238,6 +238,7 @@ MonoBehaviour:
   damage: 5
   hitEffect: {fileID: 9114252207585919183, guid: f0113adff97641e41b7d8dfced865a37,
     type: 3}
+  particles: {fileID: 2904442057842914897}
 --- !u!1 &2904442057842914892
 GameObject:
   m_ObjectHideFlags: 0

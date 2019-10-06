@@ -7,6 +7,9 @@ public class CardSelectHandler : MonoBehaviour
 {
     private int roomCurrency;
 
+    [SerializeField] private List<RoomCard> earlyZeroCards;
+    [SerializeField] private List<RoomCard> lateZeroCards;
+
     [SerializeField] private List<RoomCard> firstCards;
     [SerializeField] private List<RoomCard> earlyCards;
     [SerializeField] private List<RoomCard> lateCards;
@@ -53,6 +56,12 @@ public class CardSelectHandler : MonoBehaviour
         return card;
     }
 
+    private RoomCard GetZeroCard()
+    {
+        return earlyZeroCards[Random.Range(0, earlyZeroCards.Count - 1)];
+
+    }
+
 
     private void BuildRoomCard(RoomCard card)
     {
@@ -75,7 +84,7 @@ public class CardSelectHandler : MonoBehaviour
         {
             card1 = PopRoomCard();
             card2 = PopRoomCard();
-            card3 = PopRoomCard();
+            card3 = GetZeroCard();
 
             if (card1 != null) left.gameObject.SetActive(true);
             if (card2 != null) middle.gameObject.SetActive(true);

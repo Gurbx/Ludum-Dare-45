@@ -29,6 +29,9 @@ public class PlayerBullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<EnemyHealth>().Damage(damage);
+        } else
+        {
+            GameHandler.AddSceenShake(3, 3, 0.1f);
         }
 
         var effect = Instantiate(hitEffectPrefab, transform.position, transform.rotation);

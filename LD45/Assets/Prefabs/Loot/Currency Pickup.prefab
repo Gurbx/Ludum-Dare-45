@@ -4969,3 +4969,4 @@ MonoBehaviour:
   type: 2
   pickupEffect: {fileID: 6960095037078935772, guid: b3dfae50c1f916743841bf4991d24159,
     type: 3}
+  value: 1

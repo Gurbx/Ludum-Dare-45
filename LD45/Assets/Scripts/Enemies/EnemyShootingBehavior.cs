@@ -7,6 +7,7 @@ public class EnemyShootingBehavior : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float cooldown;
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private AudioSource shootAudio;
 
     [SerializeField] private bool volley;
 
@@ -31,6 +32,8 @@ public class EnemyShootingBehavior : MonoBehaviour
             if (!volley) Shoot();
             else ShootVolley();
             timer = cooldown + Random.Range(-0.2f, 0.2f);
+            shootAudio.pitch = Random.Range(0.8f, 1.2f);
+            shootAudio.Play();
         }
     }
 

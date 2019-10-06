@@ -14,6 +14,9 @@ public class GameHandler : MonoBehaviour
     public CinemachineVirtualCamera cam1, cam2;
     [HideInInspector] public CinemachineVirtualCamera activeCam;
 
+    private static CinemachineBasicMultiChannelPerlin noise1, noise2;
+    private static float timer;
+
     void Awake()
     {
         if (instance != null) Destroy(instance.gameObject);
@@ -22,7 +25,34 @@ public class GameHandler : MonoBehaviour
         activeCam = cam1;
         instance = this;
 
+        noise1 = cam1.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        noise2 = cam2.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
 
+    private void Update()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            timer = 0;
+            noise1.m_AmplitudeGain = 0;
+            noise1.m_AmplitudeGain = 0;
+
+            noise2.m_AmplitudeGain = 0;
+            noise2.m_AmplitudeGain = 0;
+        }
+    }
+
+    public static void AddSceenShake(float amp, float freq, float dur)
+    {
+
+        noise1.m_AmplitudeGain = amp;
+        noise1.m_FrequencyGain = freq;
+
+        noise2.m_AmplitudeGain = amp;
+        noise2.m_FrequencyGain = freq;
+
+        timer = dur;
     }
 
 

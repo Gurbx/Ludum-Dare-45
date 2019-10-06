@@ -4819,6 +4819,7 @@ MonoBehaviour:
   type: 3
   pickupEffect: {fileID: 7318792247354860410, guid: 762cc4e6a557bd84b94041d37da9234c,
     type: 3}
+  value: 0
 --- !u!1 &4759445934046165942
 GameObject:
   m_ObjectHideFlags: 0
@@ -4881,7 +4882,7 @@ MonoBehaviour:
   m_PointLightQuality: 0
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
-  m_ShapeLightParametricRadius: 0.43
+  m_ShapeLightParametricRadius: 1
   m_ShapeLightFalloffSize: 2.89
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
