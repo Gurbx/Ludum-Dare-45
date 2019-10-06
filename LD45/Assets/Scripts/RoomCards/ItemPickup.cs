@@ -20,7 +20,7 @@ public class ItemPickup : MonoBehaviour
         switch(type)
         {
             case PickupType.DAMAGE:
-                collision.gameObject.GetComponent<PlayerShootingHandler>().IncreaseDamage();
+                collision.gameObject.GetComponent<PlayerShootingHandler>().IncreasePowerLevel(10);
                 break;
 
             case PickupType.HEALTH:

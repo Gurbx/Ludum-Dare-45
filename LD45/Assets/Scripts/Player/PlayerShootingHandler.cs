@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class PlayerShootingHandler : MonoBehaviour
 {
@@ -9,12 +10,16 @@ public class PlayerShootingHandler : MonoBehaviour
 
     [SerializeField] private PlayerBullet bulletPrefab;
 
-    private int damage = 1;
+    [SerializeField] private GameObject playerSprite;
+    [SerializeField] private Light2D light;
+    
+
+    private int powerLevel;
 
     // Start is called before the first frame update
     void Start()
     {
-        damage = 0;
+        powerLevel = 0;
     }
 
     // Update is called once per frame
@@ -28,15 +33,32 @@ public class PlayerShootingHandler : MonoBehaviour
 
     private void Shoot(Vector3 direction)
     {
-        if (damage == 0) return;
+        if (powerLevel <= 0) return;
         var bullet = Instantiate(bulletPrefab, transform.position + direction*0.5f, transform.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
-        bullet.Initialize(color, damage);
+        bullet.Initialize(color, powerLevel);
+
+        powerLevel--;
+        PowerLevelChanged();
 
     }
 
-    public void IncreaseDamage()
+    public void IncreasePowerLevel(int amount)
     {
-        damage++;
+        powerLevel += amount;
+        PowerLevelChanged();
+    }
+
+    public void DecreasePowerLevel(int amount)
+    {
+        powerLevel--;
+        PowerLevelChanged();
+    }
+
+    private void PowerLevelChanged()
+    {
+        playerSprite.transform.localScale = new Vector3(0.05f*powerLevel, 0.05f*powerLevel, 1);
+        light.gameObject.transform.localScale = new Vector3(0.05f * powerLevel, 0.05f * powerLevel, 1);
+        light.intensity = powerLevel/75f; 
     }
 }
