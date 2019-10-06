@@ -5,6 +5,7 @@ using UnityEngine.Experimental.Rendering.LWRP;
 
 public class EnemyMovement : MonoBehaviour
 {
+    [SerializeField] private float movementSpeed;
     [SerializeField] private int damage;
     private EnemyHandler enemyHandler;
 
@@ -39,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
         moveVelocity = player.transform.position - transform.position;
         moveVelocity.Normalize();
 
-        moveVelocity *= enemyHandler.enemyType.movementSpeed;
+        moveVelocity *= movementSpeed;
 
         if (hitTimer >= 0) moveVelocity *= -1; //Move away from player if just hit him
     }
@@ -51,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && damage > 0)
         {
             collision.gameObject.GetComponent<PlayerShootingHandler>().DecreasePowerLevel(damage, true);
             hitTimer = 0.25f;

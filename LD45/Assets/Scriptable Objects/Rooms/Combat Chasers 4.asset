@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
-  m_Name: Early Combat Room
+  m_Name: Combat Chasers 4
   m_EditorClassIdentifier: 
-  roomCost: 0
+  roomCost: 2
   type: 0
   color: {r: 1, g: 0.601208, b: 0, a: 1}
   name: COMBAT

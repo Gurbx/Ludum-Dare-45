@@ -22,7 +22,7 @@ public class PlayerShootingHandler : MonoBehaviour
 
     private float powerPercentage;
     private int powerLevel;
-    private const int MAX_POWER_LEVEL = 70;
+    private const int MAX_POWER_LEVEL = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +44,8 @@ public class PlayerShootingHandler : MonoBehaviour
     {
         if (powerLevel <= 0) return;
         var bullet = Instantiate(bulletPrefab, transform.position + direction*0.5f, transform.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
-        bullet.Initialize(color, powerLevel);
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * (bulletSpeed * (1-powerPercentage)+25));
+        bullet.Initialize(color, (int)(10f*powerPercentage)+1);
 
         //powerLevel--;
         DecreasePowerLevel(1, false);

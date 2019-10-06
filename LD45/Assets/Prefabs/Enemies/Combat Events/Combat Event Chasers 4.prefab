@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8976241265786383826}
   - component: {fileID: 7465968315737287003}
   m_Layer: 0
-  m_Name: CombatEvent1
+  m_Name: Chasers 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnEffectPrefab: {fileID: 5840086454725000832, guid: feff5bc21a84bcd4eb51c5b8dabdeb31,
     type: 3}
-  spawnExplosionPrefab: {fileID: 7318792247354860410, guid: 762cc4e6a557bd84b94041d37da9234c,
+  spawnExplosionPrefab: {fileID: 102051537667686706, guid: 0627c2b236af4834484d08064055b44e,
     type: 3}
 --- !u!1001 &8976241266164966190
 PrefabInstance:

@@ -3,7 +3,11 @@ guid: a4fa482547e880f47a1106ad89815f76
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spawnEffectPrefab: {fileID: 5840086454725000832, guid: feff5bc21a84bcd4eb51c5b8dabdeb31,
+      type: 3}
+  - spawnExplosionPrefab: {fileID: 102051537667686706, guid: 0627c2b236af4834484d08064055b44e,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

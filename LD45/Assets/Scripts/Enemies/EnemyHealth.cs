@@ -16,7 +16,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         enemyHandler = gameObject.GetComponent<EnemyHandler>();
-        health = enemyHandler.enemyType.health;
+        //health = enemyHandler.enemyType.health;
     }
 
     public void Damage(int damage)

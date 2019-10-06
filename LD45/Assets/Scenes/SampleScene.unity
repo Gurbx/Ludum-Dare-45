@@ -16324,13 +16324,16 @@ MonoBehaviour:
   earlyCards:
   - {fileID: 11400000, guid: f2913fc6b075e5f44a31c9297508d843, type: 2}
   - {fileID: 11400000, guid: 4eb1aad885b8b2e4aa9c3aa2432fb190, type: 2}
-  - {fileID: 11400000, guid: 4eb1aad885b8b2e4aa9c3aa2432fb190, type: 2}
-  - {fileID: 11400000, guid: 4eb1aad885b8b2e4aa9c3aa2432fb190, type: 2}
+  - {fileID: 11400000, guid: d8875103a03f658449561d6a0db57189, type: 2}
+  - {fileID: 11400000, guid: d8875103a03f658449561d6a0db57189, type: 2}
   - {fileID: 11400000, guid: f2913fc6b075e5f44a31c9297508d843, type: 2}
+  - {fileID: 11400000, guid: 247f46401c0ceab45a744fb4ae2c9fbe, type: 2}
+  - {fileID: 11400000, guid: 247f46401c0ceab45a744fb4ae2c9fbe, type: 2}
   - {fileID: 11400000, guid: 4eb1aad885b8b2e4aa9c3aa2432fb190, type: 2}
   - {fileID: 11400000, guid: 4eb1aad885b8b2e4aa9c3aa2432fb190, type: 2}
-  - {fileID: 11400000, guid: 4eb1aad885b8b2e4aa9c3aa2432fb190, type: 2}
-  - {fileID: 11400000, guid: 4eb1aad885b8b2e4aa9c3aa2432fb190, type: 2}
+  - {fileID: 11400000, guid: 247f46401c0ceab45a744fb4ae2c9fbe, type: 2}
+  - {fileID: 11400000, guid: 247f46401c0ceab45a744fb4ae2c9fbe, type: 2}
+  - {fileID: 11400000, guid: 247f46401c0ceab45a744fb4ae2c9fbe, type: 2}
   lateCards: []
   roomTransition: {fileID: 1793064127}
   left: {fileID: 284655994}
@@ -22038,7 +22041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54d76d4979a26849856a97ff958d00c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 9
   shootingHandler: {fileID: 977582557}
 --- !u!114 &977582557
 MonoBehaviour:
@@ -22053,7 +22056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0.9889562, a: 1}
-  bulletSpeed: 800
+  bulletSpeed: 1200
   bulletPrefab: {fileID: 3879131909654756741, guid: e7740155c1eabe54b8dd9e6f452cc0f1,
     type: 3}
   playerSprite: {fileID: 56655373}
