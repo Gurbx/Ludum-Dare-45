@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a93891d8c620b046845a24bda4bc68b, type: 3}
+  m_Name: C XXY
+  m_EditorClassIdentifier: 
+  roomCost: 0
+  type: 0
+  color: {r: 1, g: 0.601208, b: 0, a: 1}
+  name: Danger
+  loot: {fileID: 0}
+  enemies: {fileID: 3945316111461407912, guid: 0fda6d24be736f440912dca905f9266f, type: 3}

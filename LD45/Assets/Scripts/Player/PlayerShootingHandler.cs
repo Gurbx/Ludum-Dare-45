@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerShootingHandler : MonoBehaviour
 {
     private int damage = 5;
+    private bool isDead;
 
     [SerializeField] private Color color;
     [SerializeField] private float bulletSpeed;
@@ -29,6 +30,7 @@ public class PlayerShootingHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isDead = false;
         powerLevel = 0;
         PowerLevelChanged();
         GameHandler.GetGameHandler().UpdateDamageText(damage);
@@ -51,7 +53,7 @@ public class PlayerShootingHandler : MonoBehaviour
         bullet.Initialize(color, damage);
 
         //powerLevel--;
-        DecreasePowerLevel(1, false);
+        if (powerLevel > 1) DecreasePowerLevel(1, false);
         //PowerLevelChanged();
 
     }
@@ -65,6 +67,8 @@ public class PlayerShootingHandler : MonoBehaviour
 
     public void DecreasePowerLevel(int amount, bool hitEffect)
     {
+        if (isDead) return;
+
         powerLevel--;
         if (powerLevel <= 0)
         {
@@ -72,8 +76,10 @@ public class PlayerShootingHandler : MonoBehaviour
             playerSprite.SetActive(false);
             Instantiate(deathEffect, transform.position, transform.rotation);
             gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            Destroy(gameObject.GetComponent<CircleCollider2D>());
             gameObject.layer = 2;
             Invoke("GameOverScreen", 2f);
+            isDead = true;
         }
         else if (hitEffect)
         {

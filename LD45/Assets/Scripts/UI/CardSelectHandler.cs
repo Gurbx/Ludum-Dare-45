@@ -62,9 +62,9 @@ public class CardSelectHandler : MonoBehaviour
             lateCards.Remove(card);
         }
 
-        if (nrRoomsPicked > 4)
+        if (nrRoomsPicked > 3)
         {
-            if (Random.Range(0, 100) < 25) return endCard;
+            if (Random.Range(0, 100) < 33) return endCard;
         }
 
         return card;
