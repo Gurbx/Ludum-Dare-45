@@ -20,6 +20,7 @@ public class PlayerShootingHandler : MonoBehaviour
     void Start()
     {
         powerLevel = 0;
+        PowerLevelChanged();
     }
 
     // Update is called once per frame
@@ -57,7 +58,7 @@ public class PlayerShootingHandler : MonoBehaviour
 
     private void PowerLevelChanged()
     {
-        playerSprite.transform.localScale = new Vector3(0.05f*powerLevel, 0.05f*powerLevel, 1);
+        playerSprite.transform.localScale = new Vector3(0.005f*powerLevel, 0.005f*powerLevel, 1);
         light.gameObject.transform.localScale = new Vector3(0.05f * powerLevel, 0.05f * powerLevel, 1);
         light.intensity = powerLevel/75f; 
     }

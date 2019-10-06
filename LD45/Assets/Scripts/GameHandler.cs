@@ -7,6 +7,8 @@ public class GameHandler : MonoBehaviour
 {
     private static GameHandler instance;
 
+    public int roomCurrency;
+
     public CinemachineVirtualCamera cam1, cam2;
     [HideInInspector] public CinemachineVirtualCamera activeCam;
 
@@ -14,6 +16,7 @@ public class GameHandler : MonoBehaviour
     {
         if (instance == null)
         {
+            roomCurrency = 0;
             activeCam = cam1;
             instance = this;
             DontDestroyOnLoad(gameObject);

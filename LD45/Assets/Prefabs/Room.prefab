@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 6161879412763277076}
   - component: {fileID: 6161879412763277077}
   m_Layer: 0
-  m_Name: CameraSwitchTrigger
+  m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ca37bf5fc51f9428a2dfc2b4241a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomCardPickupPrefab: {fileID: 9058534474546114306, guid: 0bd289a843fcab349a8c31b8f6fe0e4d,
-    type: 3}
-  lootPrefab: {fileID: 4313641367898948099, guid: cf1984e7b23f4684bb6bc5850f30bbba,
+  roomCardPickupPrefab: {fileID: 4759445933618211436, guid: 637bd2aaedf0a104887bccf8c51ced78,
     type: 3}

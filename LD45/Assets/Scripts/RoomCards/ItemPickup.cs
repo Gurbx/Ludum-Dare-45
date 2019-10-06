@@ -5,12 +5,17 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     [SerializeField] private PickupType type;
+    [SerializeField] private GameObject pickupEffect;
+
+    public int value;
 
     [System.Serializable]
     public enum PickupType
     {
         DAMAGE,
-        HEALTH
+        HEALTH,
+        CURRENCY,
+        CARDS
     };
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,8 +31,19 @@ public class ItemPickup : MonoBehaviour
             case PickupType.HEALTH:
                 break;
 
+            case PickupType.CARDS:
+                GameObject.Find("UI/Card Select Menu").GetComponent<CardSelectHandler>().CardCollected();
+                break;
+
+            case PickupType.CURRENCY:
+                GameHandler.GetGameHandler().roomCurrency += value;
+                break;
+
         }
 
+
+        var effect = Instantiate(pickupEffect, transform.position, transform.rotation);
+        Destroy(effect, 10f);
         Destroy(gameObject);
     }
 

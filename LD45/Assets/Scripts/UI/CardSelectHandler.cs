@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CardSelectHandler : MonoBehaviour
 {
+    private int roomCurrency;
+
     [SerializeField] private List<RoomCard> firstCards;
     [SerializeField] private List<RoomCard> earlyCards;
     [SerializeField] private List<RoomCard> lateCards;
@@ -13,6 +15,7 @@ public class CardSelectHandler : MonoBehaviour
     [SerializeField] RoomTransitionHandler roomTransition;
     [SerializeField] private Button left, middle, right;
     [SerializeField] private Image leftImage, middleImage, rightImage;
+    [SerializeField] private Text leftName, middleName, rightName;
     [SerializeField] private Animator cardMenuAnimator;
     private RoomCard card1, card2, card3;
 
@@ -62,7 +65,8 @@ public class CardSelectHandler : MonoBehaviour
         {
             card2 = PopRoomCard();
             middle.gameObject.SetActive(true);
-            middleImage.sprite = card2.iconImage;
+            middleImage.color = card2.color;
+            middleName.text = card2.name;
             firstPickup = false;
         }
         else
@@ -75,9 +79,13 @@ public class CardSelectHandler : MonoBehaviour
             if (card2 != null) middle.gameObject.SetActive(true);
             if (card3 != null) right.gameObject.SetActive(true);
 
-            leftImage.sprite = card1.iconImage;
-            middleImage.sprite = card2.iconImage;
-            rightImage.sprite = card3.iconImage;
+            leftImage.color = card1.color;
+            middleImage.color = card2.color;
+            rightImage.color = card3.color;
+
+            leftName.text = card1.name;
+            middleName.text = card2.name;
+            rightName.text = card3.name;
         }
 
         cardMenuAnimator.SetBool("visible", true);

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    [SerializeField] private RoomCardPickup roomCardPickupPrefab;
-    [SerializeField] private ItemPickup lootPrefab;
+    [SerializeField] private GameObject roomCardPickupPrefab;
+   // [SerializeField] private ItemPickup lootPrefab;
 
     private RoomCard roomCard;
 
@@ -29,6 +29,7 @@ public class CameraSwitch : MonoBehaviour
         if (roomCard.type == RoomCard.RoomType.LOOT)
         {
             SpawnLoot();
+            SpawnRoomCardPickup();
         }
         else if (roomCard.type == RoomCard.RoomType.COMBAT)
         {
@@ -81,13 +82,14 @@ public class CameraSwitch : MonoBehaviour
 
 
     // LOOT FUNCTIONS
-    private GameObject spawnedLoot;
+ //   private GameObject spawnedLoot;
     private void SpawnLoot()
     {
-        var loot = Instantiate(lootPrefab, transform.position, transform.rotation);
-        spawnedLoot = loot.gameObject;
-        InvokeRepeating("CheckIfLootIsPickedUp", 1f, 1f);
+        var loot = Instantiate(roomCard.loot, transform.position, transform.rotation);
+   //     spawnedLoot = loot.gameObject;
+        //InvokeRepeating("CheckIfLootIsPickedUp", 1f, 1f);
     }
+    /*
     private void CheckIfLootIsPickedUp()
     {
         if (spawnedLoot == null)
@@ -96,12 +98,25 @@ public class CameraSwitch : MonoBehaviour
             Invoke("SpawnRoomCardPickup", 4f);
         }
     }
+    */
 
     //COMBAT ROOM
+    private GameObject spawnedCombatEvent;
     private void SpawnEnemies()
     {
         enemiesSpawned = true;
         Debug.Log("ENEMIES SPAWNED");
         var en = Instantiate(combatEvent, transform.position, transform.rotation);
+        spawnedCombatEvent = en.gameObject;
+        InvokeRepeating("CheckCombaEventStatus", 1f, 1f);
+    }
+
+    private void CheckCombaEventStatus()
+    {
+        if (spawnedCombatEvent.GetComponent<CombatEvent>().IsEventComplete())
+        {
+            CancelInvoke();
+            Invoke("SpawnRoomCardPickup", 1f);
+        }
     }
 }

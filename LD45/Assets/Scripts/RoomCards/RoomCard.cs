@@ -7,9 +7,10 @@ using UnityEngine.Tilemaps;
 public class RoomCard : ScriptableObject
 {
     //   public Vector2Int minSize, maxSize;
-    public int combatLevel;
+    public int roomCost;
     public RoomType type;
-    public Sprite iconImage;
+    public Color color;
+    public string name;
 
     public GameObject loot;
     public GameObject enemies;

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private int health;
+    [SerializeField] private int energyDropValue;
+    [SerializeField] private int health;
+
+    [SerializeField] private GameObject itemDropPrefab;
 
     private EnemyHandler enemyHandler;
 
@@ -26,6 +29,11 @@ public class EnemyHealth : MonoBehaviour
             var effect = Instantiate(deathEffectPrefab, transform.position, transform.rotation);
             effect.GetComponent<ParticleSystem>().startColor = enemyHandler.enemyType.color;
             Destroy(effect, 5f);
+
+            //Drop item
+            var item = Instantiate(itemDropPrefab, transform.position, transform.rotation);
+            item.GetComponent<ItemPickup>().value = energyDropValue;
+
 
             Destroy(gameObject);
         }
